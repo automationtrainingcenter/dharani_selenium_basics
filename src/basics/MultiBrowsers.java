@@ -9,7 +9,7 @@ public class MultiBrowsers {
 	WebDriver obj;
 	
 	public void launchChrome() throws InterruptedException {
-		System.setProperty("webdriver.chrome.driver", "E:\\selenium\\softwares\\drivers\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "C:\\dharani\\softwares\\drivers\\chromedriver_win32\\chromedriver.exe");
 		obj = new ChromeDriver();
 		obj.get("http://www.google.com");
 		Thread.sleep(2000);
