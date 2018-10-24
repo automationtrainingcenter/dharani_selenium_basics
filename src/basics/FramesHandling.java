@@ -1,13 +1,15 @@
 package basics;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 public class FramesHandling {
-	public static void main(String[] args) {
-		System.setProperty("webdriver.gecko.driver", "/Users/surya/Documents/selenium/softwares/geckodriver");
-		WebDriver driver = new FirefoxDriver();
-		driver.get("http://www.amazon.in");
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "E:\\selenium\\softwares\\drivers\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("file:///E:/SSTS/dharani/selenium_workspace/selenium_basics/frames/framesDemo.html");
 		driver.manage().window().maximize();
 
 		/*
@@ -17,37 +19,43 @@ public class FramesHandling {
 		 */
 
 		// locate all the frames inside the page
+		WebElement frame3 = driver.findElement(By.xpath("//iframe[@src = 'frameThree.html']"));
+		
+		// automate the content in frame 4
+		//switch to frame 3 from main page
+		driver.switchTo().frame(frame3);
+		//switch to frame 4 which is in frame 3
+		driver.switchTo().frame(0);
+		//now we are in frame 4
+		driver.findElement(By.xpath("//input[contains(@placeholder, 'Search')]")).sendKeys("python");
+		Thread.sleep(4000);
+		
+		//now focus is in frame 4
+		//we want to automate frame 2
+		//switch focus to main page
+		driver.switchTo().defaultContent();
+		//now focus in main page
+		driver.switchTo().frame("ftwo");
+		//now focus is in frame 2
+		driver.findElement(By.partialLinkText("selenium")).click();
+		Thread.sleep(2000);
+		
+		//now focus is in frame 2
+		// we want to automate frame 3
+		//swithc focus to main page
+		driver.switchTo().defaultContent();
+		//switch focus to frame 3
+		driver.switchTo().frame("fthree");
+		//now focus is in frame 3
+		driver.findElement(By.id("click")).click();
+		Thread.sleep(2000);
+		
+		//now focus is in frame 3
+		//we want to automate frame 1
+		driver.switchTo().defaultContent();
+		driver.switchTo().frame(0);
+		driver.findElement(By.xpath("//input[@placeholder = 'Enter name']")).sendKeys("selenium");
 
-		
-		// switch to frame 1
-
-		
-		// switch to frame2
-		/*
-		 * now focus is in frame 1, so first switch to default content then switch to
-		 * frame 2
-		 */
-
-		
-		
-		// switch to frame 4
-		/*
-		 * now focus is in frame 2 and frame 4 is in frame 3 so, first switch to default
-		 * content then switch to frame 3, locate frame 4 then switch to frame 4
-		 */
-
-		
-		
-		// switch to frame3
-		/*
-		 * now focus is in frame 4 frame 4 is child of frame 3 so switch focus to frame
-		 * 3 by using parentframe
-		 */
-
-		
-		// switch to main page and click open windows
-	
-	
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
