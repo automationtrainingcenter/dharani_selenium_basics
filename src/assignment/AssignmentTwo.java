@@ -17,7 +17,7 @@ public class AssignmentTwo {
 	 */
 	public static void main(String[] args) throws InterruptedException {
 		
-	System.setProperty("webdriver.gecko.driver","C:\\dharani\\softwares\\drivers\\geckodriver-v0.23.0-win64\\geckodriver.exe");
+	System.setProperty("webdriver.gecko.driver","E:\\selenium\\softwares\\drivers\\geckodriver.exe");
 	WebDriver driver = new FirefoxDriver();
 	driver.get("http://toolsqa.com/automation-practice-form/");
 	driver.manage().window().maximize();
